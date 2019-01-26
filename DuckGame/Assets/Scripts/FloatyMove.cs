@@ -7,6 +7,7 @@ public class FloatyMove : MonoBehaviour
     public float speed;
     public float lifeTimer = 10.0f;
     private float sinTimer = 0.0f;
+    public bool isMove = true;
 
     // Use this for initialization
     void Start() {}
@@ -17,7 +18,7 @@ public class FloatyMove : MonoBehaviour
         lifeTimer -= Time.deltaTime;
         sinTimer += Time.deltaTime;
 
-        transform.Translate(speed, 0.0f, 0.0f);
+        if (isMove) transform.Translate(speed, 0.0f, 0.0f);
 
         if (lifeTimer <= 0)
         {
