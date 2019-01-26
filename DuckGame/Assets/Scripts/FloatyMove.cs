@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloatyMove : MonoBehaviour 
+public class FloatyMove : MonoBehaviour
 {
     public float speed;
     public float lifeTimer = 10.0f;
     private float sinTimer = 0.0f;
-    public bool isMove = true;
+    public bool isMoving = true;
 
     // Use this for initialization
     void Start() {}
-	
+
 	// Update is called once per frame
-	void Update () 
+	void Update ()
     {
         lifeTimer -= Time.deltaTime;
         sinTimer += Time.deltaTime;
 
-        if (isMove) transform.Translate(speed, 0.0f, 0.0f);
+        if (isMoving)
+        {
+            transform.Translate(speed, 0.0f, 0.0f);
+        }
 
         if (lifeTimer <= 0)
         {

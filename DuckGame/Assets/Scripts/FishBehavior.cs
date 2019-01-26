@@ -14,7 +14,7 @@ public class FishBehavior : MonoBehaviour {
     public void FishOut () {
         rb.isKinematic = false;
         rb.AddForce(new Vector2(0f, 20f), ForceMode2D.Impulse);
-        GetComponent<FloatyMove>().isMove = false;
+        GetComponent<FloatyMove>().isMoving = false;
         //Camera.main.transform.parent = this.transform;
     }
 }
