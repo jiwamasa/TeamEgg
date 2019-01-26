@@ -112,6 +112,80 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &405238494
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6933178398511335963, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_Name
+      value: TetrisBlockA (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335963, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.69610405
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d2c19f5b30906f34d8541ebab2db7fa2, type: 3}
 --- !u!1 &906286744
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,8 +388,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821203954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: -4.43, z: 0.44876477}
-  m_LocalScale: {x: 7.8125, y: 1, z: 1}
+  m_LocalPosition: {x: -0.15, y: -4.43, z: 0.44876477}
+  m_LocalScale: {x: 7.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -332,15 +406,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: TetrisBlockA
       objectReference: {fileID: 0}
+    - target: {fileID: 6933178398511335963, guid: d2c19f5b30906f34d8541ebab2db7fa2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.06
+      value: -3.39
       objectReference: {fileID: 0}
     - target: {fileID: 6933178398511335962, guid: d2c19f5b30906f34d8541ebab2db7fa2,
         type: 3}
