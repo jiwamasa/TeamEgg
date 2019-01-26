@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class moveTetrisBlock : MonoBehaviour
+public class MoveTetrisBlock : MonoBehaviour
 {
     public float thrust = 0.5f;
     public float speed = 0.1f;
@@ -81,7 +81,7 @@ public class moveTetrisBlock : MonoBehaviour
     }
 
     //We have touched the duck
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void CubeCollision(Collision2D collision)
     {
         //Become Dynamic, cease falling
         falling = false;
