@@ -5,7 +5,8 @@ using UnityEngine;
 public class FloatyMove : MonoBehaviour 
 {
     public float speed;
-    public float timer = 2.0f;
+    public float lifeTimer = 10.0f;
+    private float sinTimer = 0.0f;
 
     // Use this for initialization
     void Start() {}
@@ -13,10 +14,12 @@ public class FloatyMove : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        timer -= Time.deltaTime;
+        lifeTimer -= Time.deltaTime;
+        sinTimer += Time.deltaTime;
+
         transform.Translate(speed, 0.0f, 0.0f);
 
-        if (timer <= 0)
+        if (lifeTimer <= 0)
         {
             Destroy(this.gameObject);
         }
