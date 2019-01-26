@@ -20,6 +20,7 @@ public class moveTetrisBlock : MonoBehaviour
     private Rigidbody2D rb;
 
     private Vector2 targetPosition;
+    private Vector2 previousPosition;
     private bool targetSet = false;
 
     private Vector3 startingRotation;
@@ -29,6 +30,7 @@ public class moveTetrisBlock : MonoBehaviour
     private float counter = 0;
 
     public bool falling = true;
+    private bool touchNext = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,12 +45,20 @@ public class moveTetrisBlock : MonoBehaviour
         //Input
         if (Input.GetKeyDown(KeyCode.A) && falling)
         {
+            if (falling)
+            {
+                previousPosition = transform.position;
+            }
             targetPosition = new Vector2(transform.position.x - thrust, transform.position.y);
             targetSet = true;
             falling = false;
         }
         if (Input.GetKeyDown(KeyCode.D) && falling)
         {
+            if (falling)
+            {
+                previousPosition = transform.position;
+            }
             targetPosition = new Vector2(transform.position.x + thrust, transform.position.y);
             targetSet = true;
             falling = false;
@@ -119,7 +129,7 @@ public class moveTetrisBlock : MonoBehaviour
                 {
                     //TK Lock in the object, make it child of duck and remove rigidbody
                     transform.parent = GameObject.Find("Duck").transform;
-                    rb.isKinematic = true;
+                    //rb.isKinematic = true;
                 }
             }
             else
@@ -128,20 +138,46 @@ public class moveTetrisBlock : MonoBehaviour
                 standstillLastLocation = (Vector2)transform.position;
             }
         }
+
+        //Check for touchNext
+        if(touchNext && !falling)
+        {
+            touchNext = false;
+            touchingDuck();
+        }
     }
 
     //We have touched the duck
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (falling)
+        if (collision.tag == "Duck" || collision.tag == "TetrisBlock")
         {
-            //Become Dynamic, cease falling
-            falling = false;
-            rb.isKinematic = false;
-            standstillLastLocation = (Vector2)transform.position;
-
-            targetSet = false;
-            rotationSet = false;
+            if (falling)
+            {
+                touchingDuck();
+            }
+            else
+            {
+                touchNext = true;
+            }
         }
+        else if(collision.tag == "Bounding")
+        {
+            if (targetSet)
+            {
+                targetPosition = previousPosition;
+            }
+        }
+    }
+
+    private void touchingDuck()
+    {
+        //Become Dynamic, cease falling
+        falling = false;
+        rb.isKinematic = false;
+        standstillLastLocation = (Vector2)transform.position;
+
+        targetSet = false;
+        rotationSet = false;
     }
 }
