@@ -9,10 +9,14 @@ public class moveTetrisBlock : MonoBehaviour
     public float rangeOfError = 0.05f;
 
     public int standStillThreshold = 200;
+    public float standStillRange = 0.01f;
     private int standStillCounter = 0;
     private Vector2 standstillLastLocation;
 
     public float fallingIncrement = 0.1f;
+    public float fastFallPercentIncrease = 0.25f;
+    private float originalFallValue;
+
     private Rigidbody2D rb;
 
     private Vector2 targetPosition;
@@ -64,6 +68,16 @@ public class moveTetrisBlock : MonoBehaviour
             falling = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.S) && falling)
+        {
+            originalFallValue = fallingIncrement;
+            fallingIncrement += (fastFallPercentIncrease * originalFallValue);
+        }
+        if (Input.GetKeyUp(KeyCode.S) && falling)
+        {
+            fallingIncrement = originalFallValue;
+        }
+
         //Adjust position based on input
         if (targetSet)
         {
@@ -99,12 +113,13 @@ public class moveTetrisBlock : MonoBehaviour
         //Check for standstill after leaving control
         if(!falling && !rb.isKinematic)
         {
-            if (standstillLastLocation == (Vector2)transform.position)
-            {
+            if (Vector2.Distance(standstillLastLocation, transform.position) < standStillRange) { 
                 standStillCounter++;
                 if(standStillCounter >= standStillThreshold)
                 {
-                    //TK Lock in the object
+                    //TK Lock in the object, make it child of duck and remove rigidbody
+                    transform.parent = GameObject.Find("Duck").transform;
+                    rb.isKinematic = true;
                 }
             }
             else
@@ -118,9 +133,15 @@ public class moveTetrisBlock : MonoBehaviour
     //We have touched the duck
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        //Become Dynamic, cease falling
-        falling = false;
-        rb.isKinematic = false;
-        standstillLastLocation = (Vector2)transform.position;
+        if (falling)
+        {
+            //Become Dynamic, cease falling
+            falling = false;
+            rb.isKinematic = false;
+            standstillLastLocation = (Vector2)transform.position;
+
+            targetSet = false;
+            rotationSet = false;
+        }
     }
 }
