@@ -18,6 +18,12 @@ public class moveTetrisBlock : MonoBehaviour
     private Vector2 targetPosition;
     private bool targetSet = false;
 
+    private Vector3 startingRotation;
+    private Vector3 targetRotation;
+    private bool rotationSet = false;
+    public float rotationDuration = 2f;
+    private float counter = 0;
+
     public bool falling = true;
 
     // Start is called before the first frame update
@@ -29,7 +35,8 @@ public class moveTetrisBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        //Input
         if (Input.GetKeyDown(KeyCode.A) && falling)
         {
             targetPosition = new Vector2(transform.position.x - thrust, transform.position.y);
@@ -42,6 +49,20 @@ public class moveTetrisBlock : MonoBehaviour
             targetSet = true;
             falling = false;
         }
+        if (Input.GetKeyDown(KeyCode.E) && falling)
+        {
+            startingRotation = transform.eulerAngles;
+            targetRotation = new Vector3(startingRotation.x, startingRotation.y, startingRotation.z - 90);
+            rotationSet = true;
+            falling = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && falling)
+        {
+            startingRotation = transform.eulerAngles;
+            targetRotation = new Vector3(startingRotation.x, startingRotation.y, startingRotation.z + 90);
+            rotationSet = true;
+            falling = false;
+        }
 
         //Adjust position based on input
         if (targetSet)
@@ -52,6 +73,20 @@ public class moveTetrisBlock : MonoBehaviour
             {
                 targetSet = false;
                 falling = true;
+            }
+        }
+
+        //Adjust rotation based on input
+        if (rotationSet)
+        {
+            counter += Time.deltaTime;
+            transform.eulerAngles = Vector3.Lerp(startingRotation, targetRotation, counter/ rotationDuration);
+
+            if (counter >= rotationDuration)
+            {
+                rotationSet = false;
+                falling = true;
+                counter = 0;
             }
         }
 
