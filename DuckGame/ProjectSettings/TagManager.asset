@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: House
+    uniqueID: 2093217001
+    locked: 0
+  - name: HouseMate
+    uniqueID: 2133908529
+    locked: 0

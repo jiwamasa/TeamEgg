@@ -6,6 +6,5 @@ using UnityEngine.UI;
 // Single speech bubble
 public class SpeechBubble : MonoBehaviour
 {
-    public Image image;
-    public Text text;
+    public SpriteRenderer sr;
 }
