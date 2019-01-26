@@ -12,7 +12,7 @@ public class SpeechBubbler : MonoBehaviour
     // IN:
     //   speechImage: Sprite to display
     //   speechTime: Time before speech bubble disappears
-    public void SpawnSpeechBubble(Sprite speechImage, float speechTime)
+    public void SpawnSpeechBubble(AnimationClip emote, float speechTime)
     {
         // Create speech bubble
         GameObject speechBubble = Instantiate(speechBubblePrefab, transform);
@@ -20,7 +20,7 @@ public class SpeechBubbler : MonoBehaviour
         speechBubble.transform.localPosition = Vector3.zero;
         // Set speech time (which actually sets speed, so we use the inverse)
         speechBubble.GetComponent<Animator>().SetFloat("SpeechTime", 1f / speechTime);
-        // Set speech text
-        speechBubble.GetComponentInChildren<SpeechBubble>().sr.sprite = speechImage;
+        // Set emote
+        speechBubble.GetComponentInChildren<SpeechBubble>().emoteController["Emote"] = emote;
     }
 }

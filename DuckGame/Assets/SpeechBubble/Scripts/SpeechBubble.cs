@@ -7,4 +7,5 @@ using UnityEngine.UI;
 public class SpeechBubble : MonoBehaviour
 {
     public SpriteRenderer sr;
+    public AnimatorOverrideController emoteController;
 }

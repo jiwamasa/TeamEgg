@@ -10,7 +10,7 @@ public class TESTSpeechBubble : MonoBehaviour
 
     void Start()
     {
-        speechBubbler.SpawnSpeechBubble(image, 10f);
+        //speechBubbler.SpawnSpeechBubble(image, 10f);
     }
 
 }

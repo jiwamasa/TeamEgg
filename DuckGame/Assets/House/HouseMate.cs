@@ -5,7 +5,7 @@ using UnityEngine;
 // Person who can live in a room
 public class HouseMate : MonoBehaviour
 {
-    public List<Sprite> randomEmotes; // Emotes shown when this person randomly chats
+    public List<AnimationClip> randomEmotes; // Emotes shown when this person randomly chats
 
     HousePiece hp; // House this person is a resident in
     SpeechBubbler sb; // Spawns speechbubbles
