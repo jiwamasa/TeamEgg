@@ -154,6 +154,10 @@ public class moveTetrisBlock : MonoBehaviour
         {
             if (falling)
             {
+                if (enabled)
+                {
+                    SFXPlayer.instance.PlaySFX("item_add");
+                }
                 touchingDuck();
             }
             else
@@ -165,6 +169,7 @@ public class moveTetrisBlock : MonoBehaviour
         {
             if (targetSet)
             {
+                SFXPlayer.instance.PlaySFX("bad_noise");
                 targetPosition = previousPosition;
             }
         }

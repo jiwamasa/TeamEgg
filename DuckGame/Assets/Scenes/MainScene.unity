@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  timeIntervalMin: 2
-  timeIntervalMax: 4
+  timeIntervalMin: 5
+  timeIntervalMax: 10
   housePieces:
   - {fileID: 4081007251843841183, guid: 893ffa047eb0694499e4e333a2a5c83c, type: 3}
   - {fileID: 1520864005605832593, guid: 317f3f51a7a4b584a83e14b9c0203514, type: 3}

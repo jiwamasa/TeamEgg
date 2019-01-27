@@ -66,6 +66,7 @@ MonoBehaviour:
   randomEmotes:
   - {fileID: 7400000, guid: 4837e9aa0c94c7c4db0f22ef5c193cc6, type: 2}
   sb: {fileID: 4547273936844424943}
+  scared: {fileID: 7400000, guid: 4837e9aa0c94c7c4db0f22ef5c193cc6, type: 2}
 --- !u!212 &1561026920
 SpriteRenderer:
   m_ObjectHideFlags: 0

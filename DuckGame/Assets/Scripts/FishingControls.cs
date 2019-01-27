@@ -13,6 +13,8 @@ public class FishingControls : MonoBehaviour
     private string state = "neutral";
     private float bobTimer = 0.0f;
 
+    private bool splash = false;
+
     // Use this for initialization
     void Start ()
     {
@@ -28,6 +30,11 @@ public class FishingControls : MonoBehaviour
         bobTimer += Time.deltaTime;
 
         string lastState = state;
+
+        if (Input.GetKeyDown("space"))
+        {
+            SFXPlayer.instance.PlaySFX("rod_cast");
+        }
 
         if (Input.GetKey("space") && (hasReturned || state == "cast"))
         {
@@ -54,6 +61,7 @@ public class FishingControls : MonoBehaviour
             }
 
             inWater = false;
+            splash = false;
         }
 
         // when hook is first cast, give it sidways velocity
@@ -70,6 +78,11 @@ public class FishingControls : MonoBehaviour
             {
                 rb.gravityScale = 0.5f;
                 inWater = true;
+                if (!splash)
+                {
+                    SFXPlayer.instance.PlaySFX("rod_splash");
+                    splash = true;
+                }
             }
             else
             {
@@ -124,6 +137,11 @@ public class FishingControls : MonoBehaviour
     public static float GetAngle(float x1, float y1, float x2, float y2)
     {
         return Mathf.Atan2(y2-y1, x2-x1);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        SFXPlayer.instance.PlaySFX("catch_alert");
     }
 
     private void OnTriggerExit2D(Collider2D other)

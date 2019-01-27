@@ -13,6 +13,7 @@ public class FishBehavior : MonoBehaviour {
 
     public void FishOut () {
         Debug.Log("Fished Out");
+        SFXPlayer.instance.PlaySFX("catch_success");
         rb.isKinematic = false;
         rb.AddForce(new Vector2(0f, 20f), ForceMode2D.Impulse);
         GetComponent<FloatyMove>().isMoving = false;
