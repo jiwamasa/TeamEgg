@@ -10,7 +10,7 @@ public class SpeechBubbler : MonoBehaviour
 
     // Spawn a speech bubble with an image
     // IN:
-    //   speechImage: Sprite to display
+    //   emote: Emote to play
     //   speechTime: Time before speech bubble disappears
     public void SpawnSpeechBubble(AnimationClip emote, float speechTime)
     {
