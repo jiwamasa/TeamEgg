@@ -38,6 +38,10 @@ public class HouseMateController : MonoBehaviour
     {
         StartCoroutine(PlayStaggered(scared));
     }
+    public void PARTY()
+    {
+
+    }
 
     // Play emote for everyone, but not exactly at the same time
     IEnumerator PlayStaggered(AnimationClip emote)
