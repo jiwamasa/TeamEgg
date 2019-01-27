@@ -8,10 +8,13 @@ public class TitleController : MonoBehaviour
 {
     public string introCutscene; // Starting cutscene
 
+    public Animator introAnimation;
+
     // Start game
     public void StartGame()
     {
-        SceneManager.LoadScene(introCutscene);
+        //SceneManager.LoadScene(introCutscene);
+        introAnimation.SetTrigger("Start");
     }
 
     // Quit game
