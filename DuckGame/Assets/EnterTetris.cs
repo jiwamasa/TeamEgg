@@ -94,6 +94,16 @@ public class EnterTetris : MonoBehaviour
             sendHouseMateToDuck(collision.gameObject);
             HouseMateController.instance.houseMates.Add(collision.gameObject.GetComponent<HouseMate>());
             HouseMateController.instance.HappyAll();
+            int count = HouseMateController.instance.houseMates.Count;
+            if (count < 5)
+            {
+                LayeredAudioController.instance.FadeIn(HouseMateController.instance.houseMates.Count);
+            }
+            else
+            {
+                HouseMateController.instance.PARTY();
+                print("game over");
+            }
         }
     }
 }

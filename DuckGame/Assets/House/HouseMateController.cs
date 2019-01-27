@@ -11,6 +11,7 @@ public class HouseMateController : MonoBehaviour
     public AnimationClip happy;
     public AnimationClip sad;
     public AnimationClip scared;
+    public AnimationClip party;
 
     void Awake()
     {
@@ -40,7 +41,7 @@ public class HouseMateController : MonoBehaviour
     }
     public void PARTY()
     {
-
+        StartCoroutine(PlayStaggered(party));
     }
 
     // Play emote for everyone, but not exactly at the same time
