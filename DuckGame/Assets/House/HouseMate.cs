@@ -8,6 +8,8 @@ public class HouseMate : MonoBehaviour
 {
     public List<AnimationClip> randomEmotes; // Emotes shown when this person randomly chats
     public SpeechBubbler sb; // Spawns speechbubbles
+    public AnimationClip scared;
+
 
     private float xRightMax = -1.5f;
     private float xLeftMax = -14.5f;
@@ -32,6 +34,7 @@ public class HouseMate : MonoBehaviour
         {
             sb = GetComponent<SpeechBubbler>();
         }
+        sb.SpawnSpeechBubble(scared, 5f);
     }
 
     private void Update()
