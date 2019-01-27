@@ -34,7 +34,7 @@ public class FloatySpawn : MonoBehaviour
 
             
 
-            if (pieceCount > 2)
+            if (pieceCount > 1)
             {
                 var toSpawn = houseMates[0];
                 //housePieces.RemoveAt(0);

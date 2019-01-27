@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloatyMove : MonoBehaviour
 {
-    public float lifeTimer = 30.0f;
+    public float lifeTimer = 40.0f;
     private float sinTimer = 0.0f;
     public bool isMoving = true;
 

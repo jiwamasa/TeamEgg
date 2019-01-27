@@ -116,16 +116,7 @@ public class HouseMate : MonoBehaviour
                 wandering = true;
             }
             rb.isKinematic = true;
-            count = HouseMateController.instance.houseMates.Count;
-            if (count < 6)
-            {
-                LayeredAudioController.instance.FadeIn(HouseMateController.instance.houseMates.Count);
-            } 
-            else
-            {
-                HouseMateController.instance.PARTY();
-                print("game over");
-            }  
+
         }
     }
 }

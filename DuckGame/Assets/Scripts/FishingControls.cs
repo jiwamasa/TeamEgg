@@ -7,20 +7,25 @@ public class FishingControls : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 velocity = Vector2.zero;
     private Vector2 rawPosition = Vector2.zero;
-    private Vector2 startPosition;
+    public Vector2 startPosition;
+    public GameObject thimble;
     private bool inWater = false;
-    private bool hasReturned = false;
-    private string state = "neutral";
+    private bool hasReturned = true;
+    private string state = "reel";
     private float bobTimer = 0.0f;
+    private bool isVisible = false;
 
-    private bool splash = false;
+    bool splash = false;
 
     // Use this for initialization
     void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
-        startPosition = new Vector2(0, 0);
+        startPosition = new Vector2(3f + thimble.transform.position.x, 1f + thimble.transform.position.y);
         transform.position = startPosition;
+        rb.velocity = Vector2.zero;
+        hasReturned = true;
+        isVisible = false;
 	}
 
 	// Update is called once per frame
@@ -31,14 +36,13 @@ public class FishingControls : MonoBehaviour
 
         string lastState = state;
 
-        if (Input.GetKeyDown("space"))
-        {
-            SFXPlayer.instance.PlaySFX("rod_cast");
-        }
-
         if (Input.GetKey("space") && (hasReturned || state == "cast"))
         {
             state = "cast";
+            if (lastState != "cast")
+            {
+                thimble.GetComponent<ThimbleCastAnim>().AnimateCast();
+            }
         }
         else
         {
@@ -56,55 +60,67 @@ public class FishingControls : MonoBehaviour
             float dist = Vector2.Distance(transform.position, startPosition);
             if (dist < 0.1f)
             {
-                state = "neutral";
                 hasReturned = true;
+                isVisible = false;
+
+                // if (!thimble.GetComponent<ThimbleCastAnim>().GetCurrentAnimatorStateInfo(0).IsName("ThimblePull"))
+                {
+                    // thimble.GetComponent<ThimbleCastAnim>().AnimateIdle();
+                }
             }
 
             inWater = false;
             splash = false;
         }
 
-        // when hook is first cast, give it sidways velocity
-        if (state == "cast" && lastState != "cast")
-        {
-            rb.velocity = new Vector2(5.0f, 5.0f);
-        }
-
         if (state == "cast")
         {
-            hasReturned = false;
-
-            if (transform.position.y < Constants.WaterLevel)
+            if (isVisible)
             {
-                rb.gravityScale = 0.5f;
-                inWater = true;
-                if (!splash)
+                hasReturned = false;
+
+                if (transform.position.y < Constants.WaterLevel)
                 {
-                    SFXPlayer.instance.PlaySFX("rod_splash");
-                    splash = true;
+                    rb.gravityScale = 0.5f;
+                    inWater = true;
+                }
+                else
+                {
+                    rb.gravityScale = 2.5f;
+                }
+
+                if (inWater)
+                {
+                    // smooth damp back to top of water
+                    // floating effect
+                    Vector2 towards = new Vector2(transform.position.x, Constants.WaterLevel);
+                    rawPosition = Vector2.SmoothDamp(transform.position, towards, ref velocity, 1.0f);
+                    //remove velocity don't want it
+                    rb.velocity = Vector2.zero;
+
+                    transform.position = rawPosition;
+                    // transform.position.y += Mathf.Sin(bobTimer);
+                    if (splash)
+                    {
+                        splash = true;
+                        SFXPlayer.instance.PlaySFX("rod_splash");
+                    }
                 }
             }
             else
             {
-                rb.gravityScale = 2.5f;
-            }
-
-            if (inWater)
-            {
-                // smooth damp back to top of water
-                // floating effect
-                Vector2 towards = new Vector2(transform.position.x, Constants.WaterLevel);
-                rawPosition = Vector2.SmoothDamp(transform.position, towards, ref velocity, 1.0f);
-                //remove velocity don't want it
                 rb.velocity = Vector2.zero;
-
-                transform.position = rawPosition;
-                // transform.position.y += Mathf.Sin(bobTimer);
+                transform.position = Vector2.SmoothDamp(transform.position, startPosition, ref velocity, 0.075f);
             }
         }
 
+        // GetComponent<SpriteRenderer>().enabled = isVisible;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<LineRenderer>().enabled = isVisible;
+        // Debug.Log(isVisible);
+
         LineRenderer line = GetComponent<LineRenderer>();
-        int lineCount = 5;
+        int lineCount = 10;
         Vector3[] positions = new Vector3[lineCount];
         for (int i=0; i<=lineCount-1; i++)
         {
@@ -116,43 +132,28 @@ public class FishingControls : MonoBehaviour
             temp.x += xdiff;
             temp.y += ydiff;
 
-            // // Vector2 angleRef = new Vector2(transform.position.x, startPosition.y)
-            float angle = GetAngle(transform.position.x, startPosition.y, temp.x,temp.y);
-            // float angle = Mathf.Atan2(temp.y-startPosition.y, temp.x-transform.position.x);
-
-            // temp.x += Mathf.Cos(angle)+0.5f;
-            // temp.y += Mathf.Sin(angle)+0.5f;
-
-            temp.y -= Mathf.Pow((magnitude.magnitude/(float)lineCount), 2)*4.0f*(0.25f - Mathf.Abs((float)scalar-0.5f)*Mathf.Abs((float)scalar-0.5f));
+            temp.y -= Mathf.Pow((magnitude.magnitude/(float)lineCount), 2)*8.0f*(0.25f - Mathf.Abs((float)scalar-0.5f)*Mathf.Abs((float)scalar-0.5f));
 
             positions[i] = temp;
-            //Debug.Log("" + transform.position.x + ", " + startPosition.x + " xdiff = " + xdiff);
-            // positions[i] = startPosition + (transform.position*(i/lineCount));
         }
-        //positions[lineCount-1] = transform.position;
         line.positionCount = lineCount;
         line.SetPositions(positions);
     }
 
-    public static float GetAngle(float x1, float y1, float x2, float y2)
-    {
-        return Mathf.Atan2(y2-y1, x2-x1);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        SFXPlayer.instance.PlaySFX("catch_alert");
-    }
-
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "TetrisBlock" || other.tag == "HouseMate")
+        FishBehavior fb = other.GetComponent<FishBehavior>();
+        if (state == "reel" && fb)
         {
-            FishBehavior fb = other.GetComponent<FishBehavior>();
-            if (state == "reel" && fb)
-            {
-                fb.FishOut();
-            }
+            thimble.GetComponent<ThimbleCastAnim>().AnimateReel();
+            fb.FishOut();
         }
+    }
+
+    public void ThrowCast()
+    {
+        SFXPlayer.instance.PlaySFX("rod_cast2");
+        rb.velocity = new Vector2(5.0f, 8.0f);
+        isVisible = true;
     }
 }
