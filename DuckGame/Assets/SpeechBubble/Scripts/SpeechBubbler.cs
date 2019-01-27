@@ -14,6 +14,8 @@ public class SpeechBubbler : MonoBehaviour
     //   speechTime: Time before speech bubble disappears
     public void SpawnSpeechBubble(AnimationClip emote, float speechTime)
     {
+
+        Debug.LogWarning(emote.name);
         // Create speech bubble
         GameObject speechBubble = Instantiate(speechBubblePrefab, transform);
         // Set speech bubble position

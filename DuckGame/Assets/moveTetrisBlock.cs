@@ -83,10 +83,6 @@ public class moveTetrisBlock : MonoBehaviour
             originalFallValue = fallingIncrement;
             fallingIncrement += (fastFallPercentIncrease * originalFallValue);
         }
-        if (Input.GetKeyUp(KeyCode.S) && falling)
-        {
-            fallingIncrement = originalFallValue;
-        }
 
         //Adjust position based on input
         if (targetSet)

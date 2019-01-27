@@ -146,7 +146,7 @@ public class FishingControls : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "TetrisBlock")
+        if (other.tag == "TetrisBlock" || other.tag == "HouseMate")
         {
             FishBehavior fb = other.GetComponent<FishBehavior>();
             if (state == "reel" && fb)
