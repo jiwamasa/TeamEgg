@@ -14,12 +14,22 @@ public class SpeechBubbler : MonoBehaviour
     //   speechTime: Time before speech bubble disappears
     public void SpawnSpeechBubble(AnimationClip emote, float speechTime)
     {
-
-        Debug.LogWarning(emote.name);
+        switch(emote.name)
+        {
+            case "Happy":
+                SFXPlayer.instance.PlaySFX("yahah");
+                break;
+            case "Sad":
+                SFXPlayer.instance.PlaySFX("sad");
+                break;
+            case "Scared":
+                SFXPlayer.instance.PlaySFX("crie");
+                break;
+        }
         // Create speech bubble
         GameObject speechBubble = Instantiate(speechBubblePrefab, transform);
         // Set speech bubble position
-        speechBubble.transform.localPosition = Vector3.zero;
+        speechBubble.transform.localPosition = new Vector3(2f, 1.5f, 0);
         // Set speech time (which actually sets speed, so we use the inverse)
         speechBubble.GetComponent<Animator>().SetFloat("SpeechTime", 1f / speechTime);
         // Set emote

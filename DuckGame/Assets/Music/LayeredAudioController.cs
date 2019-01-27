@@ -5,10 +5,17 @@ using UnityEngine;
 // Allows for playing multiple tracks in layers
 public class LayeredAudioController : MonoBehaviour
 {
+    public static LayeredAudioController instance = null;
     public AudioClip[] clips; // Clips to layer
     public GameObject audioPlayer; // Player to clone
 
     public AudioSource[] sources; 
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
 
 	// Use this for initialization
 	void Start () {

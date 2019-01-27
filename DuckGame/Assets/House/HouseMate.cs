@@ -102,6 +102,8 @@ public class HouseMate : MonoBehaviour
         }
     }
 
+    int count = 1;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Duck")
@@ -114,6 +116,7 @@ public class HouseMate : MonoBehaviour
                 wandering = true;
             }
             rb.isKinematic = true;
+            LayeredAudioController.instance.FadeIn(count++);
         }
     }
 }

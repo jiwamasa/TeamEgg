@@ -63,8 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece438914c3f2874e9706207b996622f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomEmotes:
-  - {fileID: 7400000, guid: 4837e9aa0c94c7c4db0f22ef5c193cc6, type: 2}
+  randomEmotes: []
   sb: {fileID: 4547273936844424943}
   scared: {fileID: 7400000, guid: 4837e9aa0c94c7c4db0f22ef5c193cc6, type: 2}
 --- !u!212 &1561026920
