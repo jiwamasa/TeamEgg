@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5359604327840757898}
   m_Layer: 0
   m_Name: crayonTetrisBoxes
-  m_TagString: Untagged
+  m_TagString: TetrisBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,7 +192,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.3243642, y: 0.19446182}

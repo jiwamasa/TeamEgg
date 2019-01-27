@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 7616188145024197019}
   m_Layer: 0
   m_Name: jijiTetrisBlock
-  m_TagString: Untagged
+  m_TagString: TetrisBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
