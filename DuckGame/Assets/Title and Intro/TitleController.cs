@@ -13,7 +13,6 @@ public class TitleController : MonoBehaviour
     // Start game
     public void StartGame()
     {
-        //SceneManager.LoadScene(introCutscene);
         introAnimation.SetTrigger("Start");
     }
 
