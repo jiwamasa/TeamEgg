@@ -91,14 +91,30 @@ public class FishingControls : MonoBehaviour
         }
 
         LineRenderer line = GetComponent<LineRenderer>();
-        int lineCount = 2;
+        int lineCount = 5;
         Vector3[] positions = new Vector3[lineCount];
-        positions[0] = startPosition;
-        for (int i=1; i<=lineCount-2; i++)
+        for (int i=0; i<=lineCount-1; i++)
         {
-            //positions[i] = startPosition + (transform.position*(i/lineCount));
+            Vector2 temp = new Vector2((float)startPosition.x, (float)startPosition.y);
+            float scalar = ((float)i)/((float)(lineCount-1));
+            float xdiff = (transform.position.x - startPosition.x)*scalar;
+            float ydiff = (transform.position.y - startPosition.y)*scalar;
+            temp.x += xdiff;
+            temp.y += ydiff;
+
+            // // Vector2 angleRef = new Vector2(transform.position.x, startPosition.y)
+            float angle = GetAngle(transform.position.x, startPosition.y, temp.x,temp.y);
+            // float angle = Mathf.Atan2(temp.y-startPosition.y, temp.x-transform.position.x);
+
+            temp.x += Mathf.Cos(angle);
+            temp.y += Mathf.Sin(angle);
+
+            positions[i] = temp;
+            Debug.Log("" + transform.position.x + ", " + startPosition.x + " xdiff = " + xdiff);
+            // positions[i] = startPosition + (transform.position*(i/lineCount));
         }
-        positions[lineCount-1] = transform.position;
+        //positions[lineCount-1] = transform.position;
+        line.positionCount = lineCount;
         line.SetPositions(positions);
     }
 
