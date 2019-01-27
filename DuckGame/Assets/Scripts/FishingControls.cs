@@ -41,7 +41,7 @@ public class FishingControls : MonoBehaviour
         if (state == "reel")
         {
             // smooth damp back to start position
-            transform.position = Vector2.SmoothDamp(transform.position, startPosition, ref velocity, 0.1f);
+            transform.position = Vector2.SmoothDamp(transform.position, startPosition, ref velocity, 0.075f);
             //remove velocity don't want it
             rb.velocity = Vector2.zero;
 
@@ -96,6 +96,7 @@ public class FishingControls : MonoBehaviour
         for (int i=0; i<=lineCount-1; i++)
         {
             Vector2 temp = new Vector2((float)startPosition.x, (float)startPosition.y);
+            Vector2 magnitude = new Vector2((float)(transform.position.x - startPosition.x), (float)(transform.position.y - startPosition.y));
             float scalar = ((float)i)/((float)(lineCount-1));
             float xdiff = (transform.position.x - startPosition.x)*scalar;
             float ydiff = (transform.position.y - startPosition.y)*scalar;
@@ -106,8 +107,10 @@ public class FishingControls : MonoBehaviour
             float angle = GetAngle(transform.position.x, startPosition.y, temp.x,temp.y);
             // float angle = Mathf.Atan2(temp.y-startPosition.y, temp.x-transform.position.x);
 
-            temp.x += Mathf.Cos(angle);
-            temp.y += Mathf.Sin(angle);
+            // temp.x += Mathf.Cos(angle)+0.5f;
+            // temp.y += Mathf.Sin(angle)+0.5f;
+
+            temp.y -= Mathf.Pow((magnitude.magnitude/(float)lineCount), 2)*4.0f*(0.25f - Mathf.Abs((float)scalar-0.5f)*Mathf.Abs((float)scalar-0.5f));
 
             positions[i] = temp;
             Debug.Log("" + transform.position.x + ", " + startPosition.x + " xdiff = " + xdiff);
