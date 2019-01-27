@@ -16,5 +16,6 @@ public class FishBehavior : MonoBehaviour {
         rb.AddForce(new Vector2(0f, 20f), ForceMode2D.Impulse);
         GetComponent<FloatyMove>().isMoving = false;
         //Camera.main.transform.parent = this.transform;
+        Camera.main.GetComponent<CameraMove>().MoveTo(new Vector2 (0f,2f));
     }
 }
