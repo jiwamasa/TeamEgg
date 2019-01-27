@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4081007251843841176}
   - component: {fileID: 4081007251843841177}
   - component: {fileID: 4081007251843841182}
+  - component: {fileID: 7768330863891435545}
+  - component: {fileID: 8512539780439271660}
   m_Layer: 0
   m_Name: aloeTetrisBlocks
   m_TagString: TetrisBlock
@@ -112,7 +114,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4081007251843841183}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33c8a0586492edc419a2f190d4783b9f, type: 3}
   m_Name: 
@@ -178,6 +180,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.3625727, y: 6.6650248}
   m_EdgeRadius: 0
+--- !u!114 &7768330863891435545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4081007251843841183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b51806bd2a1041e88e8175696a1b2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  lifeTimer: 30
+  isMoving: 1
+--- !u!114 &8512539780439271660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4081007251843841183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49216c6bb9caa413c9e9b7eadb319709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4081007251962107069
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4081007251962107068
 Transform:
   m_ObjectHideFlags: 0
