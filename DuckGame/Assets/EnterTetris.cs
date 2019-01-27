@@ -35,7 +35,10 @@ public class EnterTetris : MonoBehaviour
             {
                 carryingObject = false;
                 //Turn on Tetris Movement
-                carriedObject.GetComponent<moveTetrisBlock>().enabled = true;
+                if (carriedObject.transform.tag == "TetrisBlock")
+                {
+                    carriedObject.GetComponent<moveTetrisBlock>().enabled = true;
+                }
             }
 
         }
@@ -67,11 +70,30 @@ public class EnterTetris : MonoBehaviour
 
     }
 
+    public void sendHouseMateToDuck(GameObject targetObject)
+    {
+        //Reset used variables
+        counter = 0;
+
+        //Lerp the object to the position of this object
+        carryingObject = true;
+        carriedObject = targetObject;
+
+        startingPosition = targetObject.transform.position;
+        targetPosition = transform.position;
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "TetrisBlock")
         {
             sendToTetris(collision.gameObject);
+        }
+        if(collision.tag == "HouseMate")
+        {
+            sendHouseMateToDuck(collision.gameObject);
+            HouseMateController.instance.houseMates.Add(collision.gameObject.GetComponent<HouseMate>());
+            HouseMateController.instance.HappyAll();
         }
     }
 }

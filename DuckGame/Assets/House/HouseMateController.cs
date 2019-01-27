@@ -14,7 +14,7 @@ public class HouseMateController : MonoBehaviour
 
     void Awake()
     {
-        if (instance = null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -27,6 +27,7 @@ public class HouseMateController : MonoBehaviour
     // Play happy emote for all housemates
     public void HappyAll()
     {
+        Debug.LogWarning("HouseMates: " + houseMates);
         StartCoroutine(PlayStaggered(happy));
     }
     public void SadAll()
