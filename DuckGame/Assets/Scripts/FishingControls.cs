@@ -6,6 +6,10 @@ public class FishingControls : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 velocity = Vector2.zero;
+    private Vector2 rawPosition = Vector2.zero;
+    public Vector2 startPosition = Vector2.zero;//new Vector2(10.0f, 0.0f);
+    private bool inWater = false;
+    private bool hasReturned = false;
     private string state = "neutral";
     private float bobTimer = 0.0f;
 
@@ -13,6 +17,7 @@ public class FishingControls : MonoBehaviour
     void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
+        transform.position = startPosition;
 	}
 
 	// Update is called once per frame
@@ -22,21 +27,32 @@ public class FishingControls : MonoBehaviour
         bobTimer += Time.deltaTime;
 
         string lastState = state;
-        state = Input.GetKey("space") ? "cast" : "reel";
+
+        if (Input.GetKey("space") && (hasReturned || state == "cast"))
+        {
+            state = "cast";
+        }
+        else
+        {
+            state = "reel";
+        }
 
         if (state == "reel")
         {
-            // smooth damp back to origin
-            transform.position = Vector2.SmoothDamp(transform.position, Vector2.zero, ref velocity, 0.1f);
+            // smooth damp back to start position
+            transform.position = Vector2.SmoothDamp(transform.position, startPosition, ref velocity, 0.1f);
             //remove velocity don't want it
             rb.velocity = Vector2.zero;
 
             // if at center then return to neutral
-            float dist = Vector2.Distance(transform.position, Vector2.zero);
+            float dist = Vector2.Distance(transform.position, startPosition);
             if (dist < 0.1f)
             {
                 state = "neutral";
+                hasReturned = true;
             }
+
+            inWater = false;
         }
 
         // when hook is first cast, give it sidways velocity
@@ -47,14 +63,24 @@ public class FishingControls : MonoBehaviour
 
         if (state == "cast")
         {
+            hasReturned = false;
+
             if (transform.position.y < Constants.WaterLevel)
+            {
+                inWater = true;
+            }
+
+            if (inWater)
             {
                 // smooth damp back to top of water
                 // floating effect
                 Vector2 towards = new Vector2(transform.position.x, Constants.WaterLevel);
-                transform.position = Vector2.SmoothDamp(transform.position, towards, ref velocity, 0.1f);
+                rawPosition = Vector2.SmoothDamp(transform.position, towards, ref velocity, 0.1f);
                 //remove velocity don't want it
                 rb.velocity = Vector2.zero;
+
+                transform.position = rawPosition;
+                // transform.position.y += Mathf.Sin(bobTimer);
             }
         }
     }
