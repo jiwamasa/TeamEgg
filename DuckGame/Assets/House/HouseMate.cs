@@ -6,9 +6,11 @@ using UnityEngine;
 public class HouseMate : MonoBehaviour
 {
     public List<AnimationClip> randomEmotes; // Emotes shown when this person randomly chats
+    public SpeechBubbler sb; // Spawns speechbubbles
+    public HousePiece hp; // House this person is a resident in
 
-    HousePiece hp; // House this person is a resident in
-    SpeechBubbler sb; // Spawns speechbubbles
+    public float randomWait;
+    public float randomLength;
 
     void Start()
     {
@@ -22,10 +24,10 @@ public class HouseMate : MonoBehaviour
     {
         while (true)
         {
-            float randomWait = Random.value * 5f + 5f;
+            float randomWait = Random.value * this.randomWait + randomLength + 2;
             int randomEmote = (int)Random.Range(0, randomEmotes.Count);
             yield return new WaitForSeconds(randomWait);
-            sb.SpawnSpeechBubble(randomEmotes[randomEmote], 4f);
+            sb.SpawnSpeechBubble(randomEmotes[randomEmote], randomLength);
         }
     }
 }

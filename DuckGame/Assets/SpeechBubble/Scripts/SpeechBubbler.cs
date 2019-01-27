@@ -14,6 +14,8 @@ public class SpeechBubbler : MonoBehaviour
     //   speechTime: Time before speech bubble disappears
     public void SpawnSpeechBubble(AnimationClip emote, float speechTime)
     {
+        // Stop previous speech bubble
+        StopCurrentEmote();
         // Create speech bubble
         GameObject speechBubble = Instantiate(speechBubblePrefab, transform);
         // Set speech bubble position
@@ -22,5 +24,12 @@ public class SpeechBubbler : MonoBehaviour
         speechBubble.GetComponent<Animator>().SetFloat("SpeechTime", 1f / speechTime);
         // Set emote
         speechBubble.GetComponentInChildren<SpeechBubble>().emoteController["Emote"] = emote;
+    }
+
+    // Stop current emote (start shrink animation)
+    public void StopCurrentEmote()
+    {
+        SpeechBubble speechBubble = GetComponentInChildren<SpeechBubble>();
+        speechBubble.GetComponent<Animation>().Play("DespawnSpeechBubble");
     }
 }
