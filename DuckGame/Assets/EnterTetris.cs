@@ -14,16 +14,10 @@ public class EnterTetris : MonoBehaviour
     private Vector2 startingPosition;
     private Vector2 targetPosition;
 
-    public float impulseValue = 3f;
-    private bool forceGiven = false;
-
-    //Testing
-    public GameObject testMe;
-
     // Start is called before the first frame update
     void Start()
     {
-        sendToTetris(testMe);
+        
     }
 
     // Update is called once per frame
@@ -39,7 +33,6 @@ public class EnterTetris : MonoBehaviour
 
             if(counter >= arcDuration)
             {
-                carriedObject.GetComponent<moveTetrisBlock>().enabled = true;
                 carryingObject = false;
             }
 
@@ -49,6 +42,9 @@ public class EnterTetris : MonoBehaviour
     //Take an object, lerp them to entry point and turn on their tetris functionality
     public void sendToTetris(GameObject targetObject)
     {
+        //Reset used variables
+        counter = 0;
+
         //Lerp the object to the position of this object
         carryingObject = true;
         carriedObject = targetObject;
@@ -56,5 +52,25 @@ public class EnterTetris : MonoBehaviour
         startingPosition = targetObject.transform.position;
         targetPosition = transform.position;
 
+        //Turn on Tetris functionality
+        carriedObject.GetComponent<moveTetrisBlock>().enabled = true;
+        carriedObject.GetComponent<FloatyMove>().enabled = false;
+        carriedObject.GetComponent<FishBehavior>().enabled = false;
+
+        //Turn back to kinematic
+        var rb2D = carriedObject.GetComponent<Rigidbody2D>();
+        rb2D.isKinematic = true;
+        rb2D.velocity = Vector2.zero;
+
+        carriedObject.transform.GetChild(0).gameObject.SetActive(true);
+
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "TetrisBlock")
+        {
+            sendToTetris(collision.gameObject);
+        }
     }
 }
