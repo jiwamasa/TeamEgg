@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4512236572847315131}
   - component: {fileID: 4541768522863112306}
   - component: {fileID: 5359604327840757898}
+  - component: {fileID: 7176223978261763712}
+  - component: {fileID: 2113819896564841394}
   m_Layer: 0
   m_Name: crayonTetrisBoxes
   m_TagString: TetrisBlock
@@ -29,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1520864005605832593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: 1, z: -0.025628632}
-  m_LocalScale: {x: 0.1725665, y: 0.1725665, z: 0.1725665}
+  m_LocalScale: {x: 0.2434223, y: 0.2434223, z: 0.2434223}
   m_Children:
   - {fileID: 6003226459013091363}
   m_Father: {fileID: 0}
@@ -68,14 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c8a0586492edc419a2f190d4783b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 1.5
-  speed: 0.25
-  rangeOfError: 0.1
-  standStillThreshold: 50
-  standStillRange: 0.01
-  fallingIncrement: -0.01
-  fastFallPercentIncrease: 0.75
-  rotationDuration: 0.25
   falling: 1
 --- !u!212 &4541768522863112306
 SpriteRenderer:
@@ -151,6 +145,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11.527526, y: 17.757511}
   m_EdgeRadius: 0
+--- !u!114 &7176223978261763712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520864005605832593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b51806bd2a1041e88e8175696a1b2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTimer: 30
+  isMoving: 1
+--- !u!114 &2113819896564841394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520864005605832593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49216c6bb9caa413c9e9b7eadb319709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7083944560219397072
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6003226459013091363
 Transform:
   m_ObjectHideFlags: 0

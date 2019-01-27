@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class moveTetrisBlock : MonoBehaviour
 {
-    public float thrust = 0.5f;
-    public float speed = 0.1f;
-    public float rangeOfError = 0.05f;
+    private float thrust = 2.5f;
+    private float speed = 0.25f;
+    private float rangeOfError = 0.1f;
 
-    public int standStillThreshold = 200;
-    public float standStillRange = 0.01f;
+    private int standStillThreshold = 50;
+    private float standStillRange = 0.01f;
     private int standStillCounter = 0;
     private Vector2 standstillLastLocation;
 
-    public float fallingIncrement = 0.1f;
-    public float fastFallPercentIncrease = 0.25f;
+    private float fallingIncrement = -0.05f;
+    private float fastFallPercentIncrease = 1.0f;
     private float originalFallValue;
 
     private Rigidbody2D rb;
@@ -26,7 +26,7 @@ public class moveTetrisBlock : MonoBehaviour
     private Vector3 startingRotation;
     private Vector3 targetRotation;
     private bool rotationSet = false;
-    public float rotationDuration = 2f;
+    private float rotationDuration = 0.25f;
     private float counter = 0;
 
     public bool falling = true;

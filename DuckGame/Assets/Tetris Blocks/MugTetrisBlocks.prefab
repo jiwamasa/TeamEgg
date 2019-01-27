@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2173376381264049051
 Transform:
   m_ObjectHideFlags: 0
@@ -70,6 +70,8 @@ GameObject:
   - component: {fileID: 2173376381557613053}
   - component: {fileID: 2173376381557613050}
   - component: {fileID: 2173376381557613051}
+  - component: {fileID: 3506466119073755510}
+  - component: {fileID: 8867190125121286976}
   m_Layer: 0
   m_Name: MugTetrisBlocks
   m_TagString: TetrisBlock
@@ -86,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 2173376381557613048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.72, y: 2.72, z: 0}
-  m_LocalScale: {x: 0.3253018, y: 0.3253018, z: 0.3253018}
+  m_LocalScale: {x: 0.5092925, y: 0.5092925, z: 0.5092925}
   m_Children:
   - {fileID: 2173376381264049051}
   m_Father: {fileID: 0}
@@ -168,19 +170,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2173376381557613048}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33c8a0586492edc419a2f190d4783b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 1.5
-  speed: 0.25
-  rangeOfError: 0.1
-  standStillThreshold: 50
-  standStillRange: 0.01
-  fallingIncrement: -0.01
-  fastFallPercentIncrease: 0.75
-  rotationDuration: 0.25
   falling: 1
 --- !u!61 &2173376381557613051
 BoxCollider2D:
@@ -208,3 +202,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.041525, y: 10.257786}
   m_EdgeRadius: 0
+--- !u!114 &3506466119073755510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2173376381557613048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b51806bd2a1041e88e8175696a1b2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTimer: 30
+  isMoving: 1
+--- !u!114 &8867190125121286976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2173376381557613048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49216c6bb9caa413c9e9b7eadb319709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -7,7 +7,7 @@ public class FishingControls : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 velocity = Vector2.zero;
     private Vector2 rawPosition = Vector2.zero;
-    public Vector2 startPosition;
+    private Vector2 startPosition;
     private bool inWater = false;
     private bool hasReturned = false;
     private string state = "neutral";
@@ -17,7 +17,7 @@ public class FishingControls : MonoBehaviour
     void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
-        startPosition = new Vector2(3, 0);
+        startPosition = new Vector2(0, 0);
         transform.position = startPosition;
 	}
 
@@ -128,10 +128,13 @@ public class FishingControls : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        FishBehavior fb = other.GetComponent<FishBehavior>();
-        if (state == "reel" && fb)
+        if (other.tag == "TetrisBlock")
         {
-            fb.FishOut();
+            FishBehavior fb = other.GetComponent<FishBehavior>();
+            if (state == "reel" && fb)
+            {
+                fb.FishOut();
+            }
         }
     }
 }

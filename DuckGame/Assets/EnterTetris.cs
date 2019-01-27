@@ -34,6 +34,8 @@ public class EnterTetris : MonoBehaviour
             if(counter >= arcDuration)
             {
                 carryingObject = false;
+                //Turn on Tetris Movement
+                carriedObject.GetComponent<moveTetrisBlock>().enabled = true;
             }
 
         }
@@ -52,8 +54,7 @@ public class EnterTetris : MonoBehaviour
         startingPosition = targetObject.transform.position;
         targetPosition = transform.position;
 
-        //Turn on Tetris functionality
-        carriedObject.GetComponent<moveTetrisBlock>().enabled = true;
+        //Turn off unneeded functionality
         carriedObject.GetComponent<FloatyMove>().enabled = false;
         carriedObject.GetComponent<FishBehavior>().enabled = false;
 
