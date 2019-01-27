@@ -27,19 +27,19 @@ public class HouseMateController : MonoBehaviour
     // Play happy emote for all housemates
     public void HappyAll()
     {
-        StartCoroutine(PlatStaggered(happy));
+        StartCoroutine(PlayStaggered(happy));
     }
     public void SadAll()
     {
-        StartCoroutine(PlatStaggered(sad));
+        StartCoroutine(PlayStaggered(sad));
     }
     public void ScaredAll()
     {
-        StartCoroutine(PlatStaggered(scared));
+        StartCoroutine(PlayStaggered(scared));
     }
 
     // Play emote for everyone, but not exactly at the same time
-    IEnumerator PlatStaggered(AnimationClip emote)
+    IEnumerator PlayStaggered(AnimationClip emote)
     {
         foreach (HouseMate hm in houseMates)
         {

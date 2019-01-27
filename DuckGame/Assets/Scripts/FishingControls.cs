@@ -113,7 +113,7 @@ public class FishingControls : MonoBehaviour
             temp.y -= Mathf.Pow((magnitude.magnitude/(float)lineCount), 2)*4.0f*(0.25f - Mathf.Abs((float)scalar-0.5f)*Mathf.Abs((float)scalar-0.5f));
 
             positions[i] = temp;
-            Debug.Log("" + transform.position.x + ", " + startPosition.x + " xdiff = " + xdiff);
+            //Debug.Log("" + transform.position.x + ", " + startPosition.x + " xdiff = " + xdiff);
             // positions[i] = startPosition + (transform.position*(i/lineCount));
         }
         //positions[lineCount-1] = transform.position;

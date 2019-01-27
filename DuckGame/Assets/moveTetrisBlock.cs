@@ -172,7 +172,6 @@ public class moveTetrisBlock : MonoBehaviour
 
     private void touchingDuck()
     {
-
         //Become Dynamic, cease falling
         falling = false;
         rb.isKinematic = false;

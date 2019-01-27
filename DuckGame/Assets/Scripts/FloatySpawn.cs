@@ -9,7 +9,10 @@ public class FloatySpawn : MonoBehaviour
     public float timeIntervalMax = 10.0f;
     private float randomInterval;
    
-    public List<GameObject> names = new List<GameObject>();
+    public List<GameObject> housePieces = new List<GameObject>();
+    public List<GameObject> houseMates = new List<GameObject>();
+
+    int pieceCount = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -27,11 +30,25 @@ public class FloatySpawn : MonoBehaviour
             timer -= randomInterval;
             GenerateInterval();
             int randomIndex;
-            randomIndex = Random.Range(0, names.Count);
+            randomIndex = Random.Range(0, housePieces.Count);
 
-            var toSpawn = names[randomIndex];
+            
 
-            GameObject instance = Instantiate(toSpawn, new Vector2(transform.position.x,Constants.WaterLevel), Quaternion.identity);
+            if (pieceCount > 2)
+            {
+                var toSpawn = houseMates[0];
+                //housePieces.RemoveAt(0);
+                GameObject instance = Instantiate(toSpawn, new Vector2(transform.position.x, Constants.WaterLevel), Quaternion.identity);
+                pieceCount = 0;
+            }
+            else
+            {
+                var toSpawn = housePieces[randomIndex];
+                housePieces.RemoveAt(randomIndex);
+                GameObject instance = Instantiate(toSpawn, new Vector2(transform.position.x, Constants.WaterLevel), Quaternion.identity);
+                pieceCount++;
+            }
+
             //instance.GetComponent<SpriteRenderer>().sprite = Resources.Load(names[randomIndex], typeof(Sprite)) as Sprite;
         }
 	}
