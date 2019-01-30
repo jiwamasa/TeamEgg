@@ -100,7 +100,7 @@ public class FishingControls : MonoBehaviour
 
                     transform.position = rawPosition;
                     // transform.position.y += Mathf.Sin(bobTimer);
-                    if (splash)
+                    if (!splash)
                     {
                         splash = true;
                         SFXPlayer.instance.PlaySFX("rod_splash");
@@ -138,6 +138,11 @@ public class FishingControls : MonoBehaviour
         }
         line.positionCount = lineCount;
         line.SetPositions(positions);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        SFXPlayer.instance.PlaySFX("catch_alert");
     }
 
     private void OnTriggerExit2D(Collider2D other)

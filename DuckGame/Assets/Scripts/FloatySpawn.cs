@@ -34,17 +34,16 @@ public class FloatySpawn : MonoBehaviour
 
             
 
-            if (pieceCount > 1)
+            if (pieceCount > 2)
             {
                 var toSpawn = houseMates[0];
-                //housePieces.RemoveAt(0);
+                houseMates.RemoveAt(0);
                 GameObject instance = Instantiate(toSpawn, new Vector2(transform.position.x, Constants.WaterLevel), Quaternion.identity);
                 pieceCount = 0;
             }
             else
             {
                 var toSpawn = housePieces[randomIndex];
-                housePieces.RemoveAt(randomIndex);
                 GameObject instance = Instantiate(toSpawn, new Vector2(transform.position.x, Constants.WaterLevel), Quaternion.identity);
                 pieceCount++;
             }

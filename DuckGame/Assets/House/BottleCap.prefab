@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 193999744981926458}
   - component: {fileID: 193999744981926456}
   - component: {fileID: 319957724199193625}
+  - component: {fileID: 4933126119365902318}
   m_Layer: 0
   m_Name: BottleCap
   m_TagString: HouseMate
@@ -63,8 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece438914c3f2874e9706207b996622f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomEmotes:
-  - {fileID: 7400000, guid: 4837e9aa0c94c7c4db0f22ef5c193cc6, type: 2}
+  randomEmotes: []
   sb: {fileID: 4443381783737689534}
   scared: {fileID: 7400000, guid: 4837e9aa0c94c7c4db0f22ef5c193cc6, type: 2}
 --- !u!212 &193999744981926457
@@ -188,3 +188,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTimer: 30
   isMoving: 1
+--- !u!95 &4933126119365902318
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443381783737689520}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff93ba4d984e79f4fbe46af6296b4be2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

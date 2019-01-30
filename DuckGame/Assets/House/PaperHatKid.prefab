@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 642786406410490010}
   - component: {fileID: 3184741891455368962}
   - component: {fileID: 2317188203930223163}
+  - component: {fileID: 7367581627613021470}
   m_Layer: 0
   m_Name: PaperHatKid
   m_TagString: HouseMate
@@ -63,8 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece438914c3f2874e9706207b996622f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomEmotes:
-  - {fileID: 7400000, guid: 4837e9aa0c94c7c4db0f22ef5c193cc6, type: 2}
+  randomEmotes: []
   sb: {fileID: 1342541798697312911}
   scared: {fileID: 7400000, guid: 4837e9aa0c94c7c4db0f22ef5c193cc6, type: 2}
 --- !u!212 &131538270291163187
@@ -188,3 +188,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTimer: 30
   isMoving: 1
+--- !u!95 &7367581627613021470
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551383588395460925}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e54a11bc96db0914d803f5542fb4903f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

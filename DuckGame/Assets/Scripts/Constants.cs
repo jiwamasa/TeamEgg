@@ -4,7 +4,7 @@ using UnityEngine;
 
 ﻿public static class Constants
 {
-    public const float WaterLevel = -7.5f;
+    public const float WaterLevel = -6.5f;
 
     public static float WaterLevelAt (float x)
     {

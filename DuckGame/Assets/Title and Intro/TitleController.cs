@@ -21,5 +21,10 @@ public class TitleController : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene("CreditsScene");
+    }
 } 
 
